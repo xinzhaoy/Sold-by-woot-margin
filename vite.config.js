@@ -10,5 +10,5 @@ export default defineConfig({
       '@': resolve(__dirname, 'src')
     }
   },
-  base: '/Sold-by-woot-margin/', // GitHub repository name
+  base: './', // Relative paths for GitHub Pages
 }) 
