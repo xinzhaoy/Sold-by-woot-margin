@@ -4,40 +4,47 @@ A Vue.js-based calculator for analyzing costs and profits across different Sold 
 
 ## Features
 
-- Calculate costs and profits for different Woot sales models
+- Calculate costs and profits for different Woot sales models simultaneously
 - Interactive UI with real-time calculations
-- Compare financial outcomes across different sales strategies
+- Compare financial outcomes across all three sales strategies side-by-side
 - Mobile-responsive design that works on all devices
-- Clear visualization of profit metrics and rank improvements
+- Clear visualization of profit metrics
 
 ## How to Use
 
-1. Select a sales model (Sold by Woot, Amazon deal, or Sold by Woot 3PL)
-2. Enter the Amazon retail price (MSRP)
-3. Enter the Amazon lowest price in the last 30 days
-4. Enter the SBW retail price (Deal Price)
-5. Enter the shipping cost
-6. Enter the deal submission cost
-7. Enter the estimated sales quantity
-8. Click "Calculate Costs and Profits"
+1. Enter the Amazon retail price (MSRP)
+2. Enter the Amazon lowest price in the last 30 days
+3. Enter the SBW retail price (Deal Price)
+4. Enter the shipping cost (FBA)
+5. Click "Calculate Costs and Profits"
 
-The calculator will display comprehensive results including:
-- Woot margin calculations
-- Amazon platform fees
-- Net income for sellers
-- Return estimates
-- Total revenue projections
-- Estimated rank improvement
+The calculator will automatically display comprehensive results for all three sales models side-by-side:
+- Sold by Woot!
+- Amazon Deal
+- Sold by Woot! 3PL
 
-## Sales Models Explained
+## Cost Calculation Formulas
 
-The calculator provides analysis for three distinct sales models:
+The calculator uses specific formulas for all three sales models:
 
-- **Sold by Woot**: The standard model where Woot sells your products directly
-- **Amazon Deal**: Listing your products through Amazon's deal platform
-- **Sold by Woot 3PL**: Using Woot as a third-party logistics provider
+- **Woot Margin**: Deal Price × 0.15 (same for all models)
+- **Woot Cost**: Deal Price - Shipping cost - Woot margin (0 for Amazon deal)
+- **6Blu Margin**: Woot Cost × 0.1
+- **Amazon Platform Fee**: Deal Price × 0.84 for Amazon deal, 0 for others
+- **Net Income for Seller**:
+  - Woot models: Woot Cost - 6Blu Margin
+  - Amazon deal: Amazon platform fee - Shipping cost
+- **Returns (5%)**: Only for Amazon deal, (Net income × Estimated sales) × 0.05
+- **Net Receive**:
+  - Woot models: Estimated sales × Net income - Deal submission cost
+  - Amazon deal: Estimated sales × Net income - Returns
+- **Net Receive Per Unit**: (Net receive - Deal submission cost) / Estimated sales
 
-Each model uses different formulas to calculate margins, fees, and profits.
+## Default Values
+
+The calculator uses these default values for calculations:
+- Deal submission cost: 100 for Sold by Woot and Sold by Woot 3PL, 500 for Amazon deal
+- Estimated sales quantity: 500 for all models
 
 ## Technology Stack
 
@@ -56,7 +63,7 @@ Each model uses different formulas to calculate margins, fees, and profits.
 
 1. Clone the repository
    ```
-   git clone https://github.com/xinzhaoy/Sold-by-woot-margin.git
+   git clone https://github.com/yourusername/Sold-by-woot-margin.git
    cd Sold-by-woot-margin
    ```
 
@@ -94,52 +101,27 @@ This application is configured for GitHub Pages deployment with the `base: './'`
 
 To deploy to GitHub Pages:
 
-1. Build the project
-   ```
-   npm run build
-   ```
-
-2. Push the `dist` directory to the `gh-pages` branch or follow GitHub Pages deployment instructions.
-
-### Quick GitHub Pages Deployment
-
-You can use this command for a streamlined GitHub Pages deployment:
-
 ```
-npm run build && gh-pages -d dist
+npm run deploy
 ```
-(Requires the gh-pages package to be installed: `npm install -D gh-pages`)
 
-## Calculation Formulas
-
-The calculator uses specific formulas for each sales model:
-
-- **Sold by Woot**:
-  - Woot margin: 15% of Deal Price
-  - Woot Cost: Deal Price - Shipping Cost - Woot margin
-  - Net Income: Deal submission cost - Amazon platform fee
-
-- **Amazon Deal**:
-  - Uses Amazon's fee structure with different margin calculations
-  - Platform fees calculated based on Amazon's rates
-
-- **Sold by Woot 3PL**:
-  - Accounts for third-party logistics costs
-  - Includes both 3PL costs and Woot shipping account fees
+This will build the project and deploy it to the gh-pages branch.
 
 ## Project Structure
 
 ```
 sold-by-woot-margin/
-├── public/                # Static assets
-│   ├── assets/            # Images and styles
-│   ├── components/        # Vue components
+├── dist/                 # Built files for production
+├── src/                  # Source code
+│   ├── assets/           # Styles
+│   │   └── main.css      # Main CSS file
+│   ├── components/       # Vue components
 │   │   └── Calculator.vue # Main calculator component
-│   ├── App.vue            # Root component
-│   └── main.js            # Application entry point
-├── index.html             # HTML template
-├── package.json           # Project dependencies and scripts
-└── vite.config.js         # Vite configuration
+│   ├── App.vue           # Root component
+│   └── main.js           # Application entry point
+├── index.html            # HTML template
+├── package.json          # Project dependencies and scripts
+└── vite.config.js        # Vite configuration
 ```
 
 ## License

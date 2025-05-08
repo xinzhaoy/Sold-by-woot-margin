@@ -8,7 +8,7 @@
     <Calculator />
     
     <div class="footer">
-      <p>© {{ new Date().getFullYear() }} Sold by Woot Cost Calculator - Web Version</p>
+      <p>© {{ new Date().getFullYear() }} Sold by Woot Cost Calculator</p>
     </div>
   </div>
 </template>
