@@ -6,7 +6,11 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist"
+    "deploy": "rm -rf docs && npm run build && mkdir -p docs && cp -r dist/* docs/ && touch docs/.nojekyll && git add docs/ && git commit -m 'Update GitHub Pages' && git push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/Sold-by-woot-margin.git"
   },
   "keywords": [
     "calculator",
@@ -17,7 +21,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "vue-i18n": "^11.1.3"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.2",
