@@ -50,7 +50,7 @@ The calculator will automatically display comprehensive results for all three sa
 
 1. Clone the repository
    ```
-   git clone https://github.com/yourusername/Sold-by-woot-margin.git
+   git clone https://github.com/xinzhaoy/Sold-by-woot-margin.git
    cd Sold-by-woot-margin
    ```
 
